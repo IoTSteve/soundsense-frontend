@@ -1,32 +1,64 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+      <router-view name="header"></router-view>
+      <main>
+        <router-view style="min-height: 90vh;"/>
+      </main>
+      <router-view name="footer"></router-view>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+export default {
+  name: 'App',
+}
+</script>
+
+<style>
+
+:root {
+  --interaction-color: #ff9950;
+  --danger-color: #ee684f;
+  --warning-color: #ffc700;
+  --text-icon-color: #ffffff;
+  --notclickable-color: #cec6c6;
+  --background-color: #3b3b3b;
+  --secondary-text-icon-color: #a8a8a8;
+  --visual-information-color: #346957;
+  --disabled-color: #f4f4f4;
+  --white-color: #ffffff;
+}
+h1 {
+  font-size: 2.25rem;
+  color: var(--text-icon-color);
+  margin-top: 4.25rem;
+}
+h2 {
+  font-size: 1.625rem;
+  color: var(--text-icon-color);
+  margin-top: 4.25rem;
+  word-wrap: break-word;
+}
+h3 {
+  font-size: 1.25rem;
+  color: var(--text-icon-color);
+}
+h4 {
+  font-size: 1.063rem;
+  color: var(--text-icon-color);
+}
+body {
+  font-size: 1rem;
+  color: var(--text-icon-color);
+  background-color: var(--background-color);
+}
+p {
+  font-size: 0.875rem;
+  color: var(--text-icon-color);
+  hyphens: auto;
+}
+*:focus {
+  outline: 0;
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>
