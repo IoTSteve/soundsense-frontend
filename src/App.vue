@@ -11,6 +11,11 @@
 <script>
 export default {
   name: 'App',
+  mounted() {
+    this.axios.get('/getSoundData').then((res) => {
+      this.$store.state.soundData = res.data;
+    });
+  },
 }
 </script>
 
@@ -20,9 +25,9 @@ export default {
   --interaction-color: #ff9950;
   --danger-color: #ee684f;
   --warning-color: #ffc700;
-  --text-icon-color: #ffffff;
+  --text-icon-color: #00000;
   --notclickable-color: #cec6c6;
-  --background-color: #3b3b3b;
+  --background-color: #bbbbbb;
   --secondary-text-icon-color: #a8a8a8;
   --visual-information-color: #346957;
   --disabled-color: #f4f4f4;

@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     mapLoaded: false,
     loggedIn: false,
+    soundData: [],
     mapState: {
       zoom: 0,
       pitch: 0,

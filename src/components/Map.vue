@@ -5,10 +5,11 @@
     </transition>
     <MglMap :accessToken="accessToken" :mapStyle="mapStyle" @load="onMapLoad" :zoom.sync="$store.state.mapState.zoom" :pitch.sync="$store.state.mapState.pitch" :center.sync="$store.state.mapState.center" :bearing.sync="$store.state.mapState.bearing" class="home-map">
     <!-- use our custom bike markers on the map -->
-    <MglMarker v-for="marker in mapMarker" :key="marker.phone" :coordinates="[marker.long, marker.lat]" :color="markerColor(marker)">
+    <MglMarker v-for="marker in mapMarker" :key="marker.ts" :coordinates="[marker.long, marker.lat]">
+      <img src="@/assets/button.svg" slot="marker" alt="" srcset="">
       <MglPopup anchor="top">
           <div class="popup-body">
-            <h3 class="popup-text">{{checkFav(marker)}}</h3>
+            <p>{{marker.long}} {{marker.lat}}</p>
           </div>
         </MglPopup>
     </MglMarker>
@@ -50,7 +51,6 @@
         showMap: false,
         showControls: false,
         showTreePopup: false,
-        mapMarker: [],
         zoom: undefined,
       }
     },
@@ -75,6 +75,9 @@
       },
     },
     computed: {
+      mapMarker() {
+        return this.$store.state.soundData;
+      }
     },
     created() {
       this.mapbox = Mapbox;
