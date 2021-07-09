@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Reg from '../views/Regpage.vue'
 
 Vue.use(VueRouter)
 
@@ -11,11 +12,17 @@ const routes = [
     component: Home
   },
   {
+    path: '/reg',
+    name: 'Regpage',
+    component: Reg
+  },
+  {
     path: '/about',
     name: 'About',
     components: {
       default: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
     },
+    
   }
 ]
 
@@ -26,3 +33,14 @@ const router = new VueRouter({
 })
 
 export default router
+
+
+
+
+/*{
+  path: '/reg',
+  name: 'Regpage',
+  components: {
+    default: () => import(/* webpackChunkName: "about" * / '../views/Regpage.vue'),
+  },
+  */

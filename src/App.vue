@@ -15,6 +15,10 @@ export default {
     this.axios.get('/getSoundData').then((res) => {
       this.$store.state.soundData = res.data;
     });
+    this.axios.get('/getDevice').then((res) => {
+      this.$store.state.deviceData = res.data;
+    });
+    
   },
 }
 </script>
@@ -25,9 +29,11 @@ export default {
   --interaction-color: #ff9950;
   --danger-color: #ee684f;
   --warning-color: #ffc700;
+  --okay-color: #44af4d;
   --text-icon-color: #00000;
   --notclickable-color: #cec6c6;
   --background-color: #bbbbbb;
+  --menu-color: #2F2F2F;
   --secondary-text-icon-color: #a8a8a8;
   --visual-information-color: #346957;
   --disabled-color: #f4f4f4;
@@ -66,4 +72,23 @@ p {
   outline: 0;
 }
 
+.text {
+  color: var(--white-color)
+}
+
+.dotGreen:before {
+  content: ' \25CF';
+  margin-right: 0.5rem;
+  color: var(--okay-color);
+}
+.dotYellow:before {
+  content: ' \25CF';
+  margin-right: 0.5rem;
+  color: var(--warning-color);
+}
+.dotRed:before {
+  content: ' \25CF';
+  margin-right: 0.5rem;
+  color: var(--danger-color);
+}
 </style>

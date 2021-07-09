@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    deviceData: null,
     mapLoaded: false,
     loggedIn: false,
     soundData: [],
@@ -13,7 +14,8 @@ export default new Vuex.Store({
       pitch: 0,
       bearing: 0,
       center: [0,0]
-    }
+    },
+    selectedMarker: null,
   },
   mutations: {
   },

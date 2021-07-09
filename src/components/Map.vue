@@ -5,13 +5,11 @@
     </transition>
     <MglMap :accessToken="accessToken" :mapStyle="mapStyle" @load="onMapLoad" :zoom.sync="$store.state.mapState.zoom" :pitch.sync="$store.state.mapState.pitch" :center.sync="$store.state.mapState.center" :bearing.sync="$store.state.mapState.bearing" class="home-map">
     <!-- use our custom bike markers on the map -->
-    <MglMarker v-for="marker in mapMarker" :key="marker.ts" :coordinates="[marker.long, marker.lat]">
-      <img src="@/assets/button.svg" slot="marker" alt="" srcset="">
-      <MglPopup anchor="top">
-          <div class="popup-body">
-            <p>{{marker.long}} {{marker.lat}}</p>
-          </div>
-        </MglPopup>
+    <MglMarker v-for="marker in mapMarker" :key="marker.ts" :coordinates="[marker.long, marker.lat]" @click="$store.state.selectedMarker = marker.deviceId">
+      <div slot="marker">
+        <img v-if="$store.state.selectedMarker !== marker.deviceId" src="@/assets/button.svg" class="marker" alt="" srcset="">
+        <img v-if="$store.state.selectedMarker === marker.deviceId" src="@/assets/buttonActive.svg" class="marker" alt="" srcset="">
+      </div>
     </MglMarker>
     
     <MglGeolocateControl v-if="showControls" />
@@ -24,12 +22,12 @@
 <script>
   import Mapbox from "mapbox-gl";
   import LoadingScreen from '../components/LoadingScreen.vue';
+  // import uiBlock from '../components/uiBlock.vue';
   // import MenuButton from '../components/MenuButton';
 
   import {
     MglMap,
     MglMarker,
-    MglPopup,
     MglGeolocateControl,
     MglNavigationControl,
   } from "vue-mapbox";
@@ -40,14 +38,13 @@
       // MenuButton,
       MglMap,
       MglMarker,
-      MglPopup,
       MglGeolocateControl,
       MglNavigationControl,
     },
     data() {
       return {
         accessToken: 'pk.eyJ1IjoiaW90c3RldmUiLCJhIjoiY2trNWc3M2p6MGIzejJ4bzc5ZjdiZ2pjcCJ9.oy1EEiHX-y4g2Bh7bQlRuQ',
-        mapStyle: 'mapbox://styles/iotsteve/ckq5fpucf0pij17leajjtajfp',
+        mapStyle: 'mapbox://styles/iotsteve/ckqtttjv1071c18nzf68i81sz',
         showMap: false,
         showControls: false,
         showTreePopup: false,
@@ -76,7 +73,7 @@
     },
     computed: {
       mapMarker() {
-        return this.$store.state.soundData;
+        return this.$store.state.deviceData;
       }
     },
     created() {
@@ -89,9 +86,13 @@
 
 <style scoped>
   .home-map {
+    width: 100%;
+    height: 100%;
+    /*
     position: fixed;
     width: 100vw;
     height: 100vh;
+    */
   }
   .fade-leave-active {
   transition: opacity .5s;
@@ -105,5 +106,8 @@
   }
   .popup-text {
     color: var(--background-color)
+  }
+  .marker {
+    cursor: pointer;
   }
 </style>
