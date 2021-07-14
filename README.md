@@ -8,6 +8,9 @@ In future iterations of this frontend there will be graphs implemented and a rep
 UI Design prototype: 
 ![alt text](uiscreen.png "Screen Design with prototypical heatmap")
 
+<br>
+Deployed Frontend [https://soundsensefe.ds.ava.hfg.design/#/reg](https://soundsensefe.ds.ava.hfg.design/#/reg)
+
 
 <br>
 <br>
